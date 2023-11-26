@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,6 +97,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CustomButtonEventArgs.cs" />
+    <Compile Include="Database1DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database1DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FinalAllCharacterButtons.xaml.cs">
       <DependentUpon>FinalAllCharacterButtons.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Database1DataSet.xsc">
+      <DependentUpon>Database1DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Database1DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Database1DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Database1DataSet.xss">
+      <DependentUpon>Database1DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
