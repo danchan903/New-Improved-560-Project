@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dungeons", "Dungeons.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Temp560Project", "..\..\..\CIS400\560ProjectTest\Temp560Project\Temp560Project\Temp560Project.csproj", "{F7186EFC-1FD9-4599-9BE0-F3B2FDCF265C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alex'sNewWPF", "..\WpfApp2\Alex'sNewWPF.csproj", "{F250139A-A652-4401-BFC1-810F2912234B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp4", "..\WpfApp4\WpfApp4.csproj", "{23AD5EB4-D227-4B3A-B4FE-5CBB8751437C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F7186EFC-1FD9-4599-9BE0-F3B2FDCF265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7186EFC-1FD9-4599-9BE0-F3B2FDCF265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7186EFC-1FD9-4599-9BE0-F3B2FDCF265C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F250139A-A652-4401-BFC1-810F2912234B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F250139A-A652-4401-BFC1-810F2912234B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F250139A-A652-4401-BFC1-810F2912234B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F250139A-A652-4401-BFC1-810F2912234B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AD5EB4-D227-4B3A-B4FE-5CBB8751437C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AD5EB4-D227-4B3A-B4FE-5CBB8751437C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AD5EB4-D227-4B3A-B4FE-5CBB8751437C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AD5EB4-D227-4B3A-B4FE-5CBB8751437C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
