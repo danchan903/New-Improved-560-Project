@@ -6,7 +6,27 @@
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Beige">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height=".5*"/>
             <RowDefinition Height=".5*"/>
@@ -25,28 +45,33 @@
 
 
 
-        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30">Character Info</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Character Info</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center">Character Name:</TextBlock>
             <TextBox x:Name="CharacterName" Width="130" Height="30"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center">Player ID:</TextBlock>
-            <TextBox x:Name="PlayerID" Width="130" Height="30"></TextBox>
+            <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Player ID:</TextBlock>
+            <TextBox x:Name="PlayerID" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
         </StackPanel>
 
-        <Button Grid.Row="3" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterStatsButton" Click="GoToCharacterStats">Edit Character Stats</Button>
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Game ID:</TextBlock>
+            <TextBox x:Name="GameID" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
+        </StackPanel>
 
-        <Button Grid.Row="4" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterRaceButton" Click="GoToRaceControl">Edit Race</Button>
+        <Button Grid.Row="3" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterStatsButton" Click="GoToCharacterStats" FontFamily="MV Boli">Edit Character Stats</Button>
 
-        <Button Grid.Row="5" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterInventoryButton" Click="GoToEditInventory">Edit Inventory/Items</Button>
+        <Button Grid.Row="4" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterRaceButton" Click="GoToRaceControl" FontFamily="MV Boli">Edit Race</Button>
 
-        <Button Grid.Row="2" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterClassButton" Click="GoToEditClass">Edit Class</Button>
+        <Button Grid.Row="5" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterInventoryButton" Click="GoToEditInventory" FontFamily="MV Boli">Edit Inventory/Items</Button>
 
-        <Button Grid.Row="7" Grid.Column="1" x:Name="ConfirmCharacterInfoButton" Click="ConfirmCharacterInfo" Width="150" Height="30">Confirm</Button>
+        <Button Grid.Row="2" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterClassButton" Click="GoToEditClass" FontFamily="MV Boli">Edit Class</Button>
 
-        <Button x:Name ="BackButtonInCharacterCreation" Click="BackToMainMenuFromCharacterCreation" Grid.Row="7" Width="150" Height="30" Margin="50">Back</Button>
+        <Button Grid.Row="7" Grid.Column="1" x:Name="ConfirmCharacterInfoButton" Click="ConfirmCharacterInfo" Width="150" Height="30" FontFamily="MV Boli">Confirm</Button>
+
+        <Button Grid.Row="7" Grid.Column="0" x:Name="BackButtonInCharacterCreation" Click="BackToMainMenuFromCharacterCreation" Width="150" Height="30" FontFamily="MV Boli">Back</Button>
 
 
     </Grid>

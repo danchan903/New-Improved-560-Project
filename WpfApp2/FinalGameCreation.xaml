@@ -5,28 +5,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Width="1920" Height="1080" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Beige">
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30">Game Creation</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Game Creation</TextBlock>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
-                <TextBlock FontSize="20" VerticalAlignment="Center">GameID:</TextBlock>
-                <TextBox Name="ID" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">GameID:</TextBlock>
+                <TextBox Name="ID" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
 
-            <TextBlock FontSize="20" HorizontalAlignment="Center">Game Description:</TextBlock>
-            <TextBox Name="Description" MaxWidth="800" MinHeight="200" MinWidth="500"></TextBox>
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontFamily="MV Boli">Game Description:</TextBlock>
+            <TextBox Name="Description" MaxWidth="800" MinHeight="200" MinWidth="500" FontFamily="MV Boli"></TextBox>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Start Date:</TextBlock>
-                <TextBox Name="Date" Width="150"  Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Start Date:</TextBlock>
+                <TextBox Name="Date" Width="150"  Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="backFromGameCreator" Click="ClickBackInGameCreator" Width="150" Height="30" Margin="50">Back</Button>
-                <Button x:Name="confirmFromGameCreator" Click="ClickConfirmInGameCreator" Width="150" Height="30" Margin="50">Confirm</Button>
+                <Button x:Name="backFromGameCreator" Click="ClickBackInGameCreator" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="confirmFromGameCreator" Click="ClickConfirmInGameCreator" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
             </StackPanel>
 
 

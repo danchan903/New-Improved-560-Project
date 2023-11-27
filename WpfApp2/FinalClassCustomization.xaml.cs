@@ -28,6 +28,7 @@ namespace WpfApp2
         SqlConnection connection;
         string connectionString;
 
+		public static string ClassName { get; set; }
         public FinalClassCustomization()
 		{
 			InitializeComponent();
@@ -63,6 +64,7 @@ namespace WpfApp2
 				if (b.Name == "ConfirmButtonFromClass")
 				{
 					confirmToCharacterCreatorFromClass?.Invoke(this, new CustomButtonEventArgs("ConfirmToCharacterCreationFromClass"));
+					FinalAllCharacterButtons.className = classCombo.Text;
 				}
 
 			}

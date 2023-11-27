@@ -5,8 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Beige">
         <Grid.RowDefinitions>
             <RowDefinition Height=".5*"/>
             <RowDefinition/>
@@ -18,12 +36,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30">Main Menu</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Main Menu</TextBlock>
 
 
-        <Button Grid.Row="2" x:Name="AddNewCharacterToGameButton" Click="AddNewCharacterToGameClick" Width="350">Create New Character (Existing Game)</Button>
-        <Button Grid.Row="4" x:Name="CreateNewGameButton" Click="CreateNewGameButtonClick" Width="350">Create New Game</Button>
-        <Button Grid.Row="6" x:Name="RegisterNewPlayerButton" Click="RegisterNewPlayerClick" Width="350">Register New Player</Button>
+        <Button Grid.Row="2" x:Name="AddNewCharacterToGameButton" Click="AddNewCharacterToGameClick" Width="350" FontFamily="MV Boli">Create New Character (Existing Game)</Button>
+        <Button Grid.Row="4" x:Name="CreateNewGameButton" Click="CreateNewGameButtonClick" Width="350" FontFamily="MV Boli">Create New Game</Button>
+        <Button Grid.Row="6" x:Name="RegisterNewPlayerButton" Click="RegisterNewPlayerClick" Width="350" FontFamily="MV Boli">Register New Player</Button>
 
 
     </Grid>

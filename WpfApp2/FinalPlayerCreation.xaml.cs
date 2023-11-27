@@ -50,7 +50,7 @@ namespace WpfApp2
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@PlayerID", pID.Text);
-                command.Parameters.AddWithValue("@PlayerName", Name.Text);
+                command.Parameters.AddWithValue("@PlayerName", PlayerNameBox.Text);
                 command.Parameters.AddWithValue("@GameStoreID", Gameid.Text);
                 command.ExecuteScalar();
             }

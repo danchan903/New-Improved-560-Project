@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
+using System.Net.NetworkInformation;
+using System.Collections;
 
 namespace WpfApp2
 {
@@ -25,6 +28,13 @@ namespace WpfApp2
 	{
 		SqlConnection connection;
 		string connectionString;
+
+		public static string className { get; set; }
+		public static string currentRace { get; set; }
+
+		public static int currentCharacterID = 0;
+
+		public static List<string> allItemsOwned { get; set; }
 
 		public FinalAllCharacterButtons()
 		{
@@ -94,23 +104,79 @@ namespace WpfApp2
 		{
 			ButtonClick(sender, e);
 
-/*            string query = "SELECT a.Name FROM FROM Ingredient a " +
-                "INNER JOIN RecipeIngredient b ON a.ID = b.IngredientId " +
-                "WHERE b.RecipeID = @RecipeId";
+			/*            string query = "SELECT a.Name FROM FROM Ingredient a " +
+							"INNER JOIN RecipeIngredient b ON a.ID = b.IngredientId " +
+							"WHERE b.RecipeID = @RecipeId";
 
-            using (connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-            {
-                command.Parameters.AddWithValue("@RecipeId", listviewName.SelectedValue);
+						using (connection = new SqlConnection(connectionString))
+						using (SqlCommand command = new SqlCommand(query, connection))
+						using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+						{
+							command.Parameters.AddWithValue("@RecipeId", listviewName.SelectedValue);
 
-                DataTable characterTable = new DataTable();
-                adapter.Fill(characterTable);
+							DataTable characterTable = new DataTable();
+							adapter.Fill(characterTable);
 
-                listviewName.DisplayMember = "Name";
-                listviewName.ValueMember = "id";
-                listviewName.DataSource = characterTable;*/
-        }
+							listviewName.DisplayMember = "Name";
+							listviewName.ValueMember = "id";
+							listviewName.DataSource = characterTable;*/
+			string query = "INSERT INTO Character VALUES (@CharacterID, @CharacterName, @RaceID, @ClassID, @PlayerID, @GameID)";
+
+			using (connection = new SqlConnection(connectionString))
+			using (SqlCommand command = new SqlCommand(query, connection))
+			{
+
+
+				currentCharacterID += 1;
+				connection.Open();
+				command.Parameters.AddWithValue("@CharacterID", currentCharacterID);
+				command.Parameters.AddWithValue("@CharacterName", CharacterName.Text);
+				command.Parameters.AddWithValue("@RaceID", GetRaceID());
+				command.Parameters.AddWithValue("@ClassID", GetClassID());
+				command.Parameters.AddWithValue("@PlayerID", Convert.ToInt32(PlayerID.Text));
+				command.Parameters.AddWithValue("@GameID", Convert.ToInt32(GameID.Text));
+				CharacterName.Clear();
+				PlayerID.Clear();
+				GameID.Clear();
+
+
+				command.ExecuteScalar();
+			}
+
+
+
+		}
+
+		public int GetRaceID()
+		{
+			if (currentRace.Contains("Dragonborn")) return 1;
+			else if (currentRace.Contains("Dwarf")) return 2;
+			else if (currentRace.Contains("Gnome")) return 4;
+			else if (currentRace.Contains("Half-Elf")) return 5;
+			else if (currentRace.Contains("Elf")) return 3;
+			else if (currentRace.Contains("Halfling")) return 6;
+			else if (currentRace.Contains("Half-Orc")) return 7;
+			else if (currentRace.Contains("Human")) return 8;
+			else return 9; //Tiefling
+
+		}
+
+		public int GetClassID()
+		{
+			if (className.Contains("Barbarian")) return 1;
+			else if (className.Contains("Bard")) return 2;
+			else if (className.Contains("Cleric")) return 3;
+			else if (className.Contains("Druid")) return 4;
+			else if (className.Contains("Fighter")) return 5;
+			else if (className.Contains("Monk")) return 6;
+			else if (className.Contains("Paladin")) return 7;
+			else if (className.Contains("Ranger")) return 8;
+			else if (className.Contains("Rogue")) return 9;
+			else if (className.Contains("Sorcerer")) return 10;
+			else if (className.Contains("Warlock")) return 11;
+			else return 12; //Wizard
+
+		}
 
 		public void GoToEditInventory(object sender, RoutedEventArgs e)
 		{
@@ -151,6 +217,7 @@ namespace WpfApp2
 
 				if (b.Name == "ConfirmCharacterInfoButton")
 				{
+
 					confirmToMainMenuFromCharacterCreation?.Invoke(this, new CustomButtonEventArgs("ConfirmToMainFromCharacterCreation"));
 				}
 				if (b.Name == "EditCharacterClassButton")

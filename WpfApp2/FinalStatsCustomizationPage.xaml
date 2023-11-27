@@ -5,50 +5,71 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Beige">
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30">Character Stats</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Character Stats</TextBlock>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Width="150" Margin="5" VerticalAlignment="Center"></TextBlock>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli"></TextBlock>
+                <TextBlock Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Strength:</TextBlock>
-                <TextBox Name="str" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Strength:</TextBlock>
+                <TextBox Name="str" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Dexterity:</TextBlock>
-                <TextBox Name="dex" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Dexterity:</TextBlock>
+                <TextBox Name="dex" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Constitution:</TextBlock>
-                <TextBox Name="cons" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Constitution:</TextBlock>
+                <TextBox Name="cons" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Intelligence:</TextBlock>
-                <TextBox Name="inte" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Intelligence:</TextBlock>
+                <TextBox Name="inte" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Widsom:</TextBlock>
-                <TextBox Name="wis" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Widsom:</TextBlock>
+                <TextBox Name="wis" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Charisma:</TextBlock>
-                <TextBox Name="chari" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Charisma:</TextBlock>
+                <TextBox Name="chari" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="BackButton" Click="ClickBackButton" Width="150" Height="30" Margin="50">Back</Button>
-                <Button x:Name="ConfirmButton" Click="ClickConfirmButton" Width="150" Height="30" Margin="50">Confirm</Button>
+                <Button x:Name="ConfirmButton" Click="ClickBackButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="BackButton" Click="ClickBackButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
+                <!--<Button x:Name="ConfirmButton" Click="ClickConfirmButton" Width="150" Height="30" Margin="50">Confirm</Button>-->
+
             </StackPanel>
         </StackPanel>
 

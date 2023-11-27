@@ -61,6 +61,7 @@ namespace WpfApp2
 				if (b.Name == "ConfirmToCharacterCreationFromRace")
 				{
 					confirmToCharacterCreatorFromRace?.Invoke(this, new CustomButtonEventArgs("ConfirmToCharacterCreationFromRace"));
+					FinalAllCharacterButtons.currentRace = racesbox.Text;
 				}
 
 			}

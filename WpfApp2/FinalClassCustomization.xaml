@@ -5,14 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Beige">
+        
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30">Edit Class</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Edit Class</TextBlock>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Class Selection:</TextBlock>
-                <ComboBox Name="classCombo" Width="150" Margin="5" VerticalAlignment="Center"></ComboBox>
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Class Selection:</TextBlock>
+                <ComboBox Name="classCombo" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></ComboBox>
             </StackPanel>
 
 
@@ -22,7 +42,7 @@
                     <!-- I don't know if this actually works. I want a list of checkboxes -->
                     <!-- This one is for the regular spells -->
 
-                    <ListBox ItemsSource="{Binding Path=Spells}" SelectionMode="Multiple">
+                    <ListBox ItemsSource="{Binding Path=Spells}" SelectionMode="Multiple" FontFamily="MV Boli">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel>
@@ -39,7 +59,7 @@
 
                     <!-- This is the Class Spells, that is, spells related to a specific class -->
 
-                    <ListBox ItemsSource="{Binding Path=ClassSpells}" SelectionMode="Multiple">
+                    <ListBox ItemsSource="{Binding Path=ClassSpells}" SelectionMode="Multiple" FontFamily="MV Boli">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel>
@@ -57,8 +77,8 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="BackButtonFromClass" Click="BackToCharacterCreationFromClass" Width="150" Height="30" Margin="50">Back</Button>
-                <Button x:Name="ConfirmButtonFromClass" Click="ConfirmToCharacterCreationFromClass" Width="150" Height="30" Margin="50">Confirm</Button>
+                <Button x:Name="BackButtonFromClass" Click="BackToCharacterCreationFromClass" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="ConfirmButtonFromClass" Click="ConfirmToCharacterCreationFromClass" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
             </StackPanel>
 
 

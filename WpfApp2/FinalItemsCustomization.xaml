@@ -5,12 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30">Items Owned</TextBlock>
+             d:DesignHeight="450" d:DesignWidth="800" >
 
-            <ListBox Name="BetterItemBox" SelectionMode="Multiple" HorizontalAlignment="Center">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                            Background="LightGray"
+                            BorderThickness="1">
+                            <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="{TemplateBinding Padding}" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Beige">
+
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Items Owned</TextBlock>
+
+            <ListBox Name="BetterItemBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Multiple" HorizontalAlignment="Center" FontSize="7" FontFamily="MV Boli">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -44,8 +64,8 @@
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="BackButtonFromInventory" Click="BackToCharacterCreationFromInventory" Width="150" Height="30" Margin="50">Back</Button>
-                <Button x:Name="ConfirmButtonFromInventory" Click="ConfirmToCharacterCreationFromInventory" Width="150" Height="30" Margin="50">Confirm</Button>
+                <Button x:Name="BackButtonFromInventory" Click="BackToCharacterCreationFromInventory" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="ConfirmButtonFromInventory" Click="ConfirmToCharacterCreationFromInventory" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
             </StackPanel>
 
 
