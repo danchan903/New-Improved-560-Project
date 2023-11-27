@@ -64,7 +64,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FinalClassSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FinalGameCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinalGameSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinalHighestStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,8 +129,17 @@
     <Compile Include="FinalClassCustomization.xaml.cs">
       <DependentUpon>FinalClassCustomization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FinalClassSummary.xaml.cs">
+      <DependentUpon>FinalClassSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FinalGameCreation.xaml.cs">
       <DependentUpon>FinalGameCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FinalGameSummary.xaml.cs">
+      <DependentUpon>FinalGameSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FinalHighestStats.xaml.cs">
+      <DependentUpon>FinalHighestStats.xaml</DependentUpon>
     </Compile>
     <Compile Include="FinalItemsCustomization.xaml.cs">
       <DependentUpon>FinalItemsCustomization.xaml</DependentUpon>
