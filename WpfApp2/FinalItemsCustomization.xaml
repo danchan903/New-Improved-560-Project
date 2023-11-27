@@ -10,10 +10,26 @@
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" FontSize="30">Items Owned</TextBlock>
 
+            <ListBox Name="BetterItemBox" SelectionMode="Multiple" HorizontalAlignment="Center">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Weapon: {0}      Damage: {1}      Property: {2}">
+                                    <Binding Path="Name"/>
+                                    <Binding Path="Type"/>
+                                    <Binding Path="Property"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50" Height="400">
-                <ListBox ItemsSource="{Binding Path=Items}" SelectionMode="Multiple">
+            <!-- Ignore Text -->
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50" Height="400">
+                <ListBox ItemsSource="{Binding Path=Items}" SelectionMode="Multiple" Width="350" Height="300">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <DockPanel>
@@ -23,7 +39,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
+            </StackPanel>--> 
+            <!-- Ignore Text -->
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

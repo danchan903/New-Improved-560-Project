@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -23,12 +25,15 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalItemsCustomization : UserControl
 	{
-		public FinalItemsCustomization()
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalItemsCustomization()
 		{
-			Items = new ObservableCollection<string> { "Hello", "Hoho", "Muahaha" };
-			InitializeComponent();
-			DataContext = this;
-		}
+            InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            PopulateItemsTable();
+        }
 
 		public event EventHandler<CustomButtonEventArgs> backToCharacterCreatorFromInventory;
 		public event EventHandler<CustomButtonEventArgs> confirmToCharacterCreatorFromInventory;
@@ -64,5 +69,17 @@ namespace WpfApp2
 
 			}
 		}
-	}
+
+        private void PopulateItemsTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Item", connection))
+            {
+                DataTable itemTable = new DataTable();
+                adapter.Fill(itemTable);
+
+                BetterItemBox.ItemsSource = itemTable.DefaultView;
+            }
+        }
+    }
 }
