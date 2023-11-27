@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -21,12 +22,16 @@ namespace WpfApp2
 	/// Interaction logic for FinalRaceCustomization.xaml
 	/// </summary>
 	public partial class FinalRaceCustomization : UserControl
-	{
-		public FinalRaceCustomization()
+    {
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalRaceCustomization()
 		{
 			InitializeComponent();
-			DataContext = this;
-		}
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            PopulateRaceTable();
+        }
 		public event EventHandler<CustomButtonEventArgs> backToCharacterCreatorFromRace;
 		public event EventHandler<CustomButtonEventArgs> confirmToCharacterCreatorFromRace;
 
@@ -61,5 +66,19 @@ namespace WpfApp2
 			}
 		}
 
-	}
+        private void PopulateRaceTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Race", connection))
+            {
+                DataTable raceTable = new DataTable();
+                adapter.Fill(raceTable);
+
+                racesbox.DisplayMemberPath = "RaceName";
+                racesbox.SelectedValuePath = "RaceName";
+                racesbox.ItemsSource = raceTable.DefaultView;
+            }
+        }
+
+    }
 }
