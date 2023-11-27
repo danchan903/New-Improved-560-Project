@@ -33,15 +33,26 @@
             <RowDefinition Height=".5*"/>
             <RowDefinition Height=".5*"/>
             <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Main Menu</TextBlock>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli" Grid.ColumnSpan="2">Main Menu</TextBlock>
 
 
         <Button Grid.Row="2" x:Name="AddNewCharacterToGameButton" Click="AddNewCharacterToGameClick" Width="350" FontFamily="MV Boli">Create New Character (Existing Game)</Button>
         <Button Grid.Row="4" x:Name="CreateNewGameButton" Click="CreateNewGameButtonClick" Width="350" FontFamily="MV Boli">Create New Game</Button>
         <Button Grid.Row="6" x:Name="RegisterNewPlayerButton" Click="RegisterNewPlayerClick" Width="350" FontFamily="MV Boli">Register New Player</Button>
+
+        <Button Grid.Row="2" Grid.Column="1" x:Name="PlayerSummaryButton" Click="PlayerSummaryClick" Width="350" FontFamily="MV Boli">Player Summary</Button>
+        <Button Grid.Row="4" Grid.Column="1" x:Name="GameSummaryButton" Click="GameSummaryClick" Width="350" FontFamily="MV Boli">Game Summary</Button>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="ClassSummaryButton" Click="ClassSummaryClick" Width="350" FontFamily="MV Boli">Class Summary</Button>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="HighestStatsButton" Click="HighestStatsClick" Width="350" FontFamily="MV Boli">Highest Stats</Button>
 
 
     </Grid>

@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FinalPlayerSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FinalRaceCustomization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +125,9 @@
     </Compile>
     <Compile Include="FinalPlayerCreation.xaml.cs">
       <DependentUpon>FinalPlayerCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FinalPlayerSummary.xaml.cs">
+      <DependentUpon>FinalPlayerSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="FinalRaceCustomization.xaml.cs">
       <DependentUpon>FinalRaceCustomization.xaml</DependentUpon>

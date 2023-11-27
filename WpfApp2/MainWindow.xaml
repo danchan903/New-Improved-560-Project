@@ -24,7 +24,7 @@
         <local:FinalGameCreation x:Name="GameCreationControl" Visibility="Hidden"/>
         <local:FinalClassCustomization x:Name="ClassCustomizationControl" Visibility="Hidden"/>
         <local:FinalAllCharacterButtons x:Name="CharacterCreationControl" Visibility="Hidden"/>
-
+        <local:FinalPlayerSummary x:Name="PlayerSummaryControl" Visibility="Hidden"/>
 
     </Grid>
 </Window>

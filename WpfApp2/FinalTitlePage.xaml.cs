@@ -31,6 +31,10 @@ namespace WpfApp2
 		public event EventHandler<CustomButtonEventArgs> addCharacterToGameEvent;
 		public event EventHandler<CustomButtonEventArgs> createNewGameEvent;
 		public event EventHandler<CustomButtonEventArgs> newPlayerEvent;
+		public event EventHandler<CustomButtonEventArgs> playerSummaryClickEvent;
+		public event EventHandler<CustomButtonEventArgs> gameSummaryClickEvent;
+		public event EventHandler<CustomButtonEventArgs> classSummaryClickEvent;
+		public event EventHandler<CustomButtonEventArgs> highestStatsClickEvent;
 
 
 
@@ -56,6 +60,22 @@ namespace WpfApp2
 				if (b.Name == "RegisterNewPlayerButton")
 				{
 					newPlayerEvent?.Invoke(this, new CustomButtonEventArgs("GoToRegisterNewPlayer"));
+				}
+				if (b.Name == "PlayerSummaryButton")
+				{
+					playerSummaryClickEvent?.Invoke(this, new CustomButtonEventArgs("GoToPlayerSummary"));
+				}
+				if (b.Name == "GameSummaryButton")
+				{
+					gameSummaryClickEvent?.Invoke(this, new CustomButtonEventArgs("GoToGameSummary"));
+				}
+				if (b.Name == "ClassSummaryButton")
+				{
+					classSummaryClickEvent?.Invoke(this, new CustomButtonEventArgs("GoToClassSummary"));
+				}
+				if (b.Name == "HighestStatsButton")
+				{
+					highestStatsClickEvent?.Invoke(this, new CustomButtonEventArgs("GoToHighestStats"));
 				}
 
 
@@ -92,6 +112,30 @@ namespace WpfApp2
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		public void RegisterNewPlayerClick(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+
+		}
+
+		public void PlayerSummaryClick(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+
+		}
+
+		public void GameSummaryClick(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+
+		}
+
+		public void ClassSummaryClick(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+
+		}
+
+		public void HighestStatsClick(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
 

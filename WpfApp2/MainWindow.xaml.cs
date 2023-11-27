@@ -48,6 +48,7 @@ namespace WpfApp2
 			GameCreationControl.confirmToMainMenuFromGameCreation += OnButtonClick;
 			PlayerCreationControl.backToMainMenuFromPlayerCreator += OnButtonClick;
 			PlayerCreationControl.confirmToMainMenuFromPlayerCreator += OnButtonClick;
+			TitlePageControl.playerSummaryClickEvent += OnButtonClick;
 		}
 
 		private void OnButtonClick(object sender, CustomButtonEventArgs e)
@@ -177,6 +178,11 @@ namespace WpfApp2
 				TitlePageControl.Visibility = Visibility.Visible;
 
 			}
+			if (e.Label == "GoToPlayerSummary")
+			{
+				EverythingHidden();
+				PlayerSummaryControl.Visibility = Visibility.Visible;
+			}
 
 
 		}
@@ -192,6 +198,7 @@ namespace WpfApp2
 			GameCreationControl.Visibility = Visibility.Hidden;
 			ClassCustomizationControl.Visibility = Visibility.Hidden;
 			CharacterCreationControl.Visibility = Visibility.Hidden;
+			PlayerSummaryControl.Visibility = Visibility.Hidden;
 
 
 		}
