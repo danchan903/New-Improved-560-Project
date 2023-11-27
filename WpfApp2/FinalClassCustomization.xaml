@@ -12,7 +12,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Class Selection:</TextBlock>
-                <ComboBox Width="150" Margin="5" VerticalAlignment="Center"></ComboBox>
+                <ComboBox Name="classCombo" Width="150" Margin="5" VerticalAlignment="Center"></ComboBox>
             </StackPanel>
 
 
@@ -32,7 +32,6 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
 
                 </StackPanel>
 

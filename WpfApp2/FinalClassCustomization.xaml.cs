@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -23,21 +25,18 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalClassCustomization : UserControl
 	{
-		public FinalClassCustomization()
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalClassCustomization()
 		{
-			Spells = new ObservableCollection<string> { "Hello", "Hoho", "Muahaha" };
-			ClassSpells = new ObservableCollection<string> { "Hello", "Hoho", "Muahaha" };
 			InitializeComponent();
-			DataContext = this;
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+			PopulateCharacterTable();
 		}
 
 		public event EventHandler<CustomButtonEventArgs> backToCharacterCreatorFromClass;
 		public event EventHandler<CustomButtonEventArgs> confirmToCharacterCreatorFromClass;
-
-		public ObservableCollection<string> Spells { get; }
-
-		public ObservableCollection<string> ClassSpells { get; }
-
 
 		public void BackToCharacterCreationFromClass(object sender, RoutedEventArgs e)
 		{
@@ -68,5 +67,19 @@ namespace WpfApp2
 
 			}
 		}
-	}
+
+        private void PopulateCharacterTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Class", connection))
+            {
+                DataTable classTable = new DataTable();
+                adapter.Fill(classTable);
+
+				classCombo.DisplayMemberPath = "ClassType";
+				classCombo.SelectedValuePath = "ClassType";
+				classCombo.ItemsSource = classTable.DefaultView;
+            }
+        }
+    }
 }

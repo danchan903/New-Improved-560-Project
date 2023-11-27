@@ -33,22 +33,54 @@ namespace WpfApp2
 			connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
 		}
 
-		private void FinalAllCharacterButtons_Load(object sender, EventArgs e)
+/*		private void FinalAllCharacterButtons_Load(object sender, EventArgs e)
 		{
-
+			PopulateCharacterTable();
 		}
 
-		private void PopulateCharacterTable()
+        private void PopulateCharacterTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Recipe", connection))
+            {
+                DataTable characterTable = new DataTable();
+                adapter.Fill(characterTable);
+
+                *//*
+				 * listviewName.DisplayMember = "Name";
+				 * listviewName.ValueMember = "id";
+				 * listviewName.DataSource = characterTable;
+				 *//*
+            }
+        }
+
+        private void PopulateCharacterTableWithQuery()
 		{
+			string query = "SELECT a.Name FROM FROM Ingredient a " +
+				"INNER JOIN RecipeIngredient b ON a.ID = b.IngredientId " +
+				"WHERE b.RecipeID = @RecipeId";
+
 			using (connection = new SqlConnection(connectionString))
-			using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Character", connection))
+			using (SqlCommand command = new SqlCommand(query, connection))
+			using (SqlDataAdapter adapter = new SqlDataAdapter(command))
 			{
+				command.Parameters.AddWithValue("@RecipeId", listviewName.SelectedValue);
+
 				DataTable characterTable = new DataTable();
 				adapter.Fill(characterTable);
 
-
+				*//*
+				 * listviewName.DisplayMember = "Name";
+				 * listviewName.ValueMember = "id";
+				 * listviewName.DataSource = characterTable;
+				 *//*
 			}
-		}
+		}*/
+
+/*		private void listview_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			PopulateCharacterTableWithQuery();
+		}*/
 
 		public event EventHandler<CustomButtonEventArgs> toEditClass;
 		public event EventHandler<CustomButtonEventArgs> toEditStats;
@@ -70,7 +102,7 @@ namespace WpfApp2
 
 		public void GoToEditClass(object sender, RoutedEventArgs e)
 		{
-			ButtonClick(sender, e);
+            ButtonClick(sender, e);
 		}
 
 		public void GoToRaceControl(object sender, RoutedEventArgs e)
