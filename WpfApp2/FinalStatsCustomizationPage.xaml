@@ -11,39 +11,39 @@
             <TextBlock HorizontalAlignment="Center" FontSize="30">Character Stats</TextBlock>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <TextBlock FontSize="20" VerticalAlignment="Center">Total Points:</TextBlock>
+                <TextBlock FontSize="20" VerticalAlignment="Center"></TextBlock>
                 <TextBlock Width="150" Margin="5" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Strength:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="str" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Dexterity:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="dex" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Constitution:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="cons" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Intelligence:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="inte" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Widsom:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="wis" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Charisma:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="chari" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

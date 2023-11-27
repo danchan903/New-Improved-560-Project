@@ -93,7 +93,24 @@ namespace WpfApp2
 		public void ConfirmCharacterInfo(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
-		}
+
+/*            string query = "SELECT a.Name FROM FROM Ingredient a " +
+                "INNER JOIN RecipeIngredient b ON a.ID = b.IngredientId " +
+                "WHERE b.RecipeID = @RecipeId";
+
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                command.Parameters.AddWithValue("@RecipeId", listviewName.SelectedValue);
+
+                DataTable characterTable = new DataTable();
+                adapter.Fill(characterTable);
+
+                listviewName.DisplayMember = "Name";
+                listviewName.ValueMember = "id";
+                listviewName.DataSource = characterTable;*/
+        }
 
 		public void GoToEditInventory(object sender, RoutedEventArgs e)
 		{

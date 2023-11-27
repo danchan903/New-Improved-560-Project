@@ -22,10 +22,14 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalGameCreation : UserControl
 	{
-		public FinalGameCreation()
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalGameCreation()
 		{
 			InitializeComponent();
-		}
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+        }
 
 		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromGameCreation;
 		public event EventHandler<CustomButtonEventArgs> confirmToMainMenuFromGameCreation;
@@ -39,8 +43,18 @@ namespace WpfApp2
 		public void ClickConfirmInGameCreator(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
+            string query = "INSERT INTO Game VALUES (@GameID, @Description, @Date)";
 
-		}
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@GameID",Int32.Parse(ID.Text));
+                command.Parameters.AddWithValue("@Description", Description.Text);
+                command.Parameters.AddWithValue("@Date", Date.Text);
+                command.ExecuteScalar();
+            }
+        }
 
 		public void ButtonClick(object sender, RoutedEventArgs e)
 		{

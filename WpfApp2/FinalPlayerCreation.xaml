@@ -12,18 +12,18 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">PlayerID:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="pID" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Player Name:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="Name" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">GameStoreID:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="Gameid" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

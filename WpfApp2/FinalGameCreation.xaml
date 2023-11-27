@@ -12,16 +12,16 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">GameID:</TextBlock>
-                <TextBox Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="ID" Width="150" Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
 
             <TextBlock FontSize="20" HorizontalAlignment="Center">Game Description:</TextBlock>
-            <TextBox MaxWidth="800" MinHeight="200" MinWidth="500"></TextBox>
+            <TextBox Name="Description" MaxWidth="800" MinHeight="200" MinWidth="500"></TextBox>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center">Start Date:</TextBlock>
-                <TextBox Width="150"  Margin="5" VerticalAlignment="Center"></TextBox>
+                <TextBox Name="Date" Width="150"  Margin="5" VerticalAlignment="Center"></TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
