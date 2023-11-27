@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -22,9 +23,31 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalAllCharacterButtons : UserControl
 	{
+		SqlConnection connection;
+		string connectionString;
+
 		public FinalAllCharacterButtons()
 		{
 			InitializeComponent();
+
+			connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+		}
+
+		private void FinalAllCharacterButtons_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void PopulateCharacterTable()
+		{
+			using (connection = new SqlConnection(connectionString))
+			using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Character", connection))
+			{
+				DataTable characterTable = new DataTable();
+				adapter.Fill(characterTable);
+
+
+			}
 		}
 
 		public event EventHandler<CustomButtonEventArgs> toEditClass;
