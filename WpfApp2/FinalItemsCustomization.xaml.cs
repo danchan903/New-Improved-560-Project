@@ -65,11 +65,12 @@ namespace WpfApp2
 				if (b.Name == "ConfirmButtonFromInventory")
 				{
 					confirmToCharacterCreatorFromInventory?.Invoke(this, new CustomButtonEventArgs("ConfirmToCharacterCreationFromInventory"));
-					FinalAllCharacterButtons.allItemsOwned = new List<string>();
+					FinalAllCharacterButtons.allItemsOwned = new List<int>();
 					foreach (var item in BetterItemBox.SelectedItems)
 					{
-						string itemName = item.ToString();
-						FinalAllCharacterButtons.allItemsOwned.Add(itemName);
+						DataRowView row = (DataRowView)item;
+						int id = Int32.Parse(row[0].ToString());
+						FinalAllCharacterButtons.allItemsOwned.Add(id);
 					}
 				}
 

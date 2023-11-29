@@ -25,23 +25,15 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="Beige">
+    <Grid Background="Beige" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
 
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Items Owned</TextBlock>
 
-            <ListBox Name="BetterItemBox" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Multiple" HorizontalAlignment="Center" FontSize="7" FontFamily="MV Boli">
+            <ListBox Name="BetterItemBox" ItemsSource="{Binding ItemsOwned}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Multiple" HorizontalAlignment="Center" FontSize="10" FontFamily="MV Boli">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}Weapon: {0}      Damage: {1}      Property: {2}">
-                                    <Binding Path="Name"/>
-                                    <Binding Path="Type"/>
-                                    <Binding Path="Property"/>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
+                        <TextBlock x:Name="word" Text="{Binding Name}"></TextBlock>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

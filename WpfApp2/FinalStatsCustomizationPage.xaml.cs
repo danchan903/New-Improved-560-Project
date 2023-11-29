@@ -41,22 +41,7 @@ namespace WpfApp2
 
 			ButtonClick(sender, e);
 
-			string strengthQuery = "INSERT INTO ListCharacterStats VALUES (1, 1, @Strength)";
-            string dexterityQuery = "INSERT INTO ListCharacterStats VALUES (1, 2, @Dexterity)";
-            string constitutionQuery = "INSERT INTO ListCharacterStats VALUES (1, 3, @Constitution)";
-            string intelligenceQuery = "INSERT INTO ListCharacterStats VALUES (1, 4, @Intelligence)";
-            string wisdomQuery = "INSERT INTO ListCharacterStats VALUES (1, 5, @Wisdom)";
-            string charismaQuery = "INSERT INTO ListCharacterStats VALUES (1, 6, @Charisma)";
-
-			using (connection = new SqlConnection(connectionString))
-			using (SqlCommand command = new SqlCommand(strengthQuery, connection))
-			{
-				connection.Open();
-				command.Parameters.AddWithValue("@Strength", str.Text);
-				command.ExecuteScalar();
-            }
-
-			using (connection = new SqlConnection(connectionString))
+/*			using (connection = new SqlConnection(connectionString))
 			using (SqlCommand command = new SqlCommand(dexterityQuery, connection))
 			{
 				connection.Open();
@@ -94,7 +79,7 @@ namespace WpfApp2
                 connection.Open();
                 command.Parameters.AddWithValue("@Charisma", chari.Text);
                 command.ExecuteScalar();
-            }
+            }*/
 
         }
 
@@ -120,10 +105,13 @@ namespace WpfApp2
 				if (b.Name == "ConfirmButton")
 				{
 					confirmToCharacterCustomization?.Invoke(this, new CustomButtonEventArgs("ConfirmToCharacterCustomizationFromStats"));
-				}
-
-
-
+                    FinalAllCharacterButtons.Strength = Int32.Parse(str.Text);
+                    FinalAllCharacterButtons.Dexterity = Int32.Parse(dex.Text);
+                    FinalAllCharacterButtons.Wisdom = Int32.Parse(wis.Text);
+                    FinalAllCharacterButtons.Charisma = Int32.Parse(chari.Text);
+                    FinalAllCharacterButtons.Intelligence = Int32.Parse(inte.Text);
+                    FinalAllCharacterButtons.Constitution = Int32.Parse(cons.Text);
+                }
 			}
 		}
 	}

@@ -30,7 +30,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Class Name:</TextBlock>
-                <ComboBox Name="classComboForSummary" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></ComboBox>
+                <ComboBox Name="classComboForSummary" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli" ItemsSource="{Binding Class}"></ComboBox>
             </StackPanel>
 
 

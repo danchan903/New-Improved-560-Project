@@ -28,6 +28,8 @@
         <local:FinalGameSummary x:Name="GameSummaryControl" Visibility="Hidden"/>
         <local:FinalClassSummary x:Name="ClassSummaryControl" Visibility="Hidden"/>
         <local:FinalHighestStats x:Name="HighestStatsControl" Visibility="Hidden"/>
+        <local:FinalSpellCustomization x:Name="SpellListControl" Visibility="Hidden"/>
+        <local:FinalViewAllSpells x:Name="AllSpellsControl" Visibility="Hidden"/>
 
     </Grid>
 </Window>

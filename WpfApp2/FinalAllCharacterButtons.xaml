@@ -48,36 +48,38 @@
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Character Info</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Character Name:</TextBlock>
-            <TextBox x:Name="CharacterName" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
+            <TextBox x:Name="CharacterName" Width="150" Height="30" FontFamily="MV Boli" FontSize="17"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Player ID:</TextBlock>
-            <TextBox x:Name="PlayerID" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
+            <TextBox x:Name="PlayerID" Width="150" Height="30" FontFamily="MV Boli" FontSize="17"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Game ID:</TextBlock>
-            <TextBox x:Name="GameID" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
+            <TextBox x:Name="GameID" Width="150" Height="30" FontFamily="MV Boli" FontSize="17"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Character Description:</TextBlock>
-            <TextBox x:Name="CharacterDescriptionBox" Width="400" HorizontalAlignment="Stretch" Height="Auto" FontFamily="MV Boli" TextWrapping="Wrap"></TextBox>
+            <TextBox x:Name="CharacterDescriptionBox" Width="400" HorizontalAlignment="Stretch" Height="Auto" FontFamily="MV Boli" TextWrapping="Wrap" FontSize="20"></TextBox>
         </StackPanel>
 
-        <Button Grid.Row="3" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterStatsButton" Click="GoToCharacterStats" FontFamily="MV Boli">Edit Character Stats</Button>
+        <Button FontSize="15" Grid.Row="3" Grid.Column="0" Width="170" Height="40" x:Name="EditCharacterStatsButton" Click="GoToCharacterStats" FontFamily="MV Boli">Edit Character Stats</Button>
 
-        <Button Grid.Row="4" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterRaceButton" Click="GoToRaceControl" FontFamily="MV Boli">Edit Race</Button>
+        <Button FontSize="15" Grid.Row="4" Grid.Column="0" Width="170" Height="40" x:Name="EditCharacterRaceButton" Click="GoToRaceControl" FontFamily="MV Boli">Edit Race</Button>
 
-        <Button Grid.Row="5" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterInventoryButton" Click="GoToEditInventory" FontFamily="MV Boli">Edit Inventory/Items</Button>
+        <Button FontSize="15" Grid.Row="5" Grid.Column="0" Width="170" Height="40" x:Name="EditCharacterInventoryButton" Click="GoToEditInventory" FontFamily="MV Boli">Edit Inventory/Items</Button>
 
-        <Button Grid.Row="2" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterClassButton" Click="GoToEditClass" FontFamily="MV Boli">Edit Class</Button>
+        <Button FontSize="15" Grid.Row="2" Grid.Column="0" Width="170" Height="40" x:Name="EditCharacterClassButton" Click="GoToEditClass" FontFamily="MV Boli">Edit Class</Button>
 
-        <Button Grid.Row="7" Grid.Column="1" x:Name="ConfirmCharacterInfoButton" Click="ConfirmCharacterInfo" Width="150" Height="30" FontFamily="MV Boli">Confirm</Button>
+        <Button FontSize="15" Grid.Row="6" Grid.Column="0" Width="170" Height="40" x:Name="ViewSpells" Click="ViewPossibleSpells" FontFamily="MV Boli">View Spells</Button>
 
-        <Button Grid.Row="7" Grid.Column="0" x:Name="BackButtonInCharacterCreation" Click="BackToMainMenuFromCharacterCreation" Width="150" Height="30" FontFamily="MV Boli">Back</Button>
+        <Button FontSize="15" Grid.Row="7" Grid.Column="1" x:Name="ConfirmCharacterInfoButton" Click="ConfirmCharacterInfo" Width="170" Height="40" FontFamily="MV Boli">Confirm</Button>
 
-        <Button Grid.Row="7" Grid.Column="2" x:Name="DeleteCharacterButton" Click="DeleteCharacterInfo" Width="150" Height="30" FontFamily="MV Boli">Delete</Button>
+        <Button FontSize="15" Grid.Row="7" Grid.Column="0" x:Name="BackButtonInCharacterCreation" Click="BackToMainMenuFromCharacterCreation" Width="170" Height="40" FontFamily="MV Boli">Back</Button>
+
+        <Button FontSize="15" Grid.Row="7" Grid.Column="2" x:Name="DeleteCharacterButton" Click="DeleteCharacterInfo" Width="170" Height="40" FontFamily="MV Boli">Delete</Button>
     </Grid>
 </UserControl>

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,14 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalClassSummary : UserControl
 	{
-		public FinalClassSummary()
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalClassSummary()
 		{
 			InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+			PopulateClassTable();        
 		}
 		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromClassSummary;
 
@@ -46,8 +54,22 @@ namespace WpfApp2
 			}
 		}
 
-		
+        private void PopulateClassTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Class", connection))
+            {
+                DataTable t = new DataTable();
+                adapter.Fill(t);
+
+                classComboForSummary.DisplayMemberPath = "ClassType";
+                classComboForSummary.SelectedValuePath = "ClassType";
+                classComboForSummary.ItemsSource = t.DefaultView;
+            }
+        }
 
 
-	}
+
+
+    }
 }

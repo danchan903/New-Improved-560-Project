@@ -18,6 +18,8 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Net.NetworkInformation;
 using System.Collections;
+using System.Windows.Controls.Primitives;
+using System.Xml.Linq;
 
 namespace WpfApp2
 {
@@ -33,9 +35,21 @@ namespace WpfApp2
 
 		public static string currentRace { get; set; }
 
-		public static List<string> allItemsOwned { get; set; }
+		public static List<int> allItemsOwned { get; set; }
 
-		public static string charName { get; set; }
+		public static int Strength { get; set; }
+
+		public static int Charisma { get; set; }
+
+		public static int Constitution { get; set; }
+
+		public static int Dexterity { get; set; }
+
+		public static int Wisdom { get; set; }
+
+		public static int Intelligence { get; set; }
+
+		public static string spell { get; set; }
 
 		public FinalAllCharacterButtons()
 		{
@@ -96,7 +110,8 @@ namespace WpfApp2
 		public event EventHandler<CustomButtonEventArgs> toEditClass;
 		public event EventHandler<CustomButtonEventArgs> toEditStats;
 		public event EventHandler<CustomButtonEventArgs> toEditRace;
-		public event EventHandler<CustomButtonEventArgs> toEditInventory;
+        public event EventHandler<CustomButtonEventArgs> toViewSpell;
+        public event EventHandler<CustomButtonEventArgs> toEditInventory;
 		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromCharacterCreation;
 		public event EventHandler<CustomButtonEventArgs> confirmToMainMenuFromCharacterCreation;
 
@@ -105,8 +120,12 @@ namespace WpfApp2
 		{
 			ButtonClick(sender, e);
 			UpdateAndInsert();
+            StatMaker();
+            CharacterName.Clear();
+            PlayerID.Clear();
+            GameID.Clear();
 
-		}
+        }
 
 		public void DeleteCharacterInfo(object sender, RoutedEventArgs e)
 		{
@@ -133,9 +152,6 @@ namespace WpfApp2
                     command.Parameters.AddWithValue("@Class", GetClassID());
                     command.Parameters.AddWithValue("@Player", Convert.ToInt32(PlayerID.Text));
                     command.Parameters.AddWithValue("@Game", Convert.ToInt32(GameID.Text));
-                    CharacterName.Clear();
-                    PlayerID.Clear();
-                    GameID.Clear();
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -204,6 +220,29 @@ namespace WpfApp2
 			}
         }
 
+		public void StatMaker()
+		{
+            string query = "INSERT INTO ListCharacterStats VALUES (@Name, @Strength, @Dexterity, @Cons, @Charisma, @Wisdom, @Intelligence)";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Name", CharacterName.Text);
+				command.Parameters.AddWithValue("@Strength", Strength);
+				command.Parameters.AddWithValue("@Dexterity", Dexterity);
+				command.Parameters.AddWithValue("@Cons", Constitution);
+				command.Parameters.AddWithValue("@Charisma", Charisma);
+				command.Parameters.AddWithValue("@Wisdom", Wisdom);
+				command.Parameters.AddWithValue("@Intelligence", Intelligence);
+                command.ExecuteScalar();
+            }
+        }
+
+/*		public void DeleteOrInsertItemsOwned()
+		{
+			string query = "
+		}*/
+
         public int GetRaceID()
 		{
 			if (currentRace.Contains("Dragonborn")) return 1;
@@ -253,10 +292,16 @@ namespace WpfApp2
 		public void GoToCharacterStats(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
-
+/*			charName = CharacterName.Text;*/
 		}
 
-		public void BackToMainMenuFromCharacterCreation(object sender, RoutedEventArgs e)
+        public void ViewPossibleSpells(object sender, RoutedEventArgs e)
+        {
+            ButtonClick(sender, e);
+
+        }
+
+        public void BackToMainMenuFromCharacterCreation(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
 
@@ -297,8 +342,12 @@ namespace WpfApp2
 				{
 					backToMainMenuFromCharacterCreation?.Invoke(this, new CustomButtonEventArgs("BackToMainFromCharacterCreation"));
 				}
+                if (b.Name == "ViewSpells")
+                {
+                    toViewSpell?.Invoke(this, new CustomButtonEventArgs("ToViewSpells"));
+                }
 
-			}
+            }
 		}
 	}
 }

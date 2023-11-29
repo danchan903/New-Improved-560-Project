@@ -66,8 +66,8 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="ConfirmButton" Click="ClickBackButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
-                <Button x:Name="BackButton" Click="ClickBackButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
+                <Button x:Name="BackButton" Click="ClickBackButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="ConfirmButton" Click="ClickConfirmButton" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
                 <!--<Button x:Name="ConfirmButton" Click="ClickConfirmButton" Width="150" Height="30" Margin="50">Confirm</Button>-->
 
             </StackPanel>

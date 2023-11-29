@@ -56,6 +56,8 @@ namespace WpfApp2
 			GameSummaryControl.backToMainMenuFromGameSummary += OnButtonClick;
 			PlayerSummaryControl.backToMainMenuFromPlayerSummary += OnButtonClick;
 			HighestStatsControl.backToMainMenuFromStatsSummary += OnButtonClick;
+			AllSpellsControl.backToMainMenuFromAllSpells += OnButtonClick;
+			CharacterCreationControl.toViewSpell += OnButtonClick;
 		}
 
 		private void OnButtonClick(object sender, CustomButtonEventArgs e)
@@ -225,8 +227,20 @@ namespace WpfApp2
 				EverythingHidden();
 				TitlePageControl.Visibility = Visibility.Visible;
 			}
+            if (e.Label == "BackToMainMenuFromAllSpells")
+            {
+                EverythingHidden();
+                CharacterCreationControl.Visibility = Visibility.Visible;
 
-		}
+            }
+            if (e.Label == "ToViewSpells")
+            {
+                EverythingHidden();
+                AllSpellsControl.Visibility = Visibility.Visible;
+
+            }
+
+        }
 
 
 		private void EverythingHidden()
@@ -243,6 +257,7 @@ namespace WpfApp2
 			GameSummaryControl.Visibility = Visibility.Hidden;
 			ClassSummaryControl.Visibility = Visibility.Hidden;
 			HighestStatsControl.Visibility = Visibility.Hidden;
+			AllSpellsControl.Visibility = Visibility.Hidden;
 		}
 	}
 }

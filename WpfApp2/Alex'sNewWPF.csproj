@@ -96,11 +96,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FinalSpellCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FinalStatsCustomizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FinalTitlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinalViewAllSpells.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,11 +161,17 @@
     <Compile Include="FinalRaceCustomization.xaml.cs">
       <DependentUpon>FinalRaceCustomization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FinalSpellCustomization.xaml.cs">
+      <DependentUpon>FinalSpellCustomization.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FinalStatsCustomizationPage.xaml.cs">
       <DependentUpon>FinalStatsCustomizationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="FinalTitlePage.xaml.cs">
       <DependentUpon>FinalTitlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FinalViewAllSpells.xaml.cs">
+      <DependentUpon>FinalViewAllSpells.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
