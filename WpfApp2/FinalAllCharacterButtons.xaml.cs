@@ -32,8 +32,6 @@ namespace WpfApp2
 		public static string className { get; set; }
 		public static string currentRace { get; set; }
 
-		public static int currentCharacterID = 0;
-
 		public static List<string> allItemsOwned { get; set; }
 
 		public FinalAllCharacterButtons()
@@ -120,17 +118,16 @@ namespace WpfApp2
 							listviewName.DisplayMember = "Name";
 							listviewName.ValueMember = "id";
 							listviewName.DataSource = characterTable;*/
-			string query = "INSERT INTO Character VALUES (@CharacterID, @CharacterName, @RaceID, @ClassID, @PlayerID, @GameID)";
+			string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
 
 			using (connection = new SqlConnection(connectionString))
 			using (SqlCommand command = new SqlCommand(query, connection))
 			{
 
 
-				currentCharacterID += 1;
 				connection.Open();
-				command.Parameters.AddWithValue("@CharacterID", currentCharacterID);
 				command.Parameters.AddWithValue("@CharacterName", CharacterName.Text);
+				command.Parameters.AddWithValue("@CharacterDescription", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
 				command.Parameters.AddWithValue("@RaceID", GetRaceID());
 				command.Parameters.AddWithValue("@ClassID", GetClassID());
 				command.Parameters.AddWithValue("@PlayerID", Convert.ToInt32(PlayerID.Text));

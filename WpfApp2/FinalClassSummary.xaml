@@ -30,12 +30,12 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
                 <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Class Name:</TextBlock>
-                <TextBox Name="ClassNameTextBox" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></TextBox>
+                <ComboBox Name="classComboForSummary" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></ComboBox>
             </StackPanel>
 
 
             <TextBlock FontSize="20" HorizontalAlignment="Center" FontFamily="MV Boli">List of Characters:</TextBlock>
-            <ListBox Name="ListOfCharacters" MaxWidth="800" MinHeight="200" MinWidth="500" FontFamily="MV Boli"></ListBox>
+            <ListBox Name="ListOfCharacters" MaxWidth="800" MinHeight="100" MinWidth="500" FontFamily="MV Boli"></ListBox>
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

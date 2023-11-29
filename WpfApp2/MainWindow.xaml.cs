@@ -53,6 +53,9 @@ namespace WpfApp2
 			TitlePageControl.classSummaryClickEvent += OnButtonClick;
 			TitlePageControl.highestStatsClickEvent += OnButtonClick;
 			ClassSummaryControl.backToMainMenuFromClassSummary += OnButtonClick;
+			GameSummaryControl.backToMainMenuFromGameSummary += OnButtonClick;
+			PlayerSummaryControl.backToMainMenuFromPlayerSummary += OnButtonClick;
+			HighestStatsControl.backToMainMenuFromStatsSummary += OnButtonClick;
 		}
 
 		private void OnButtonClick(object sender, CustomButtonEventArgs e)
@@ -203,6 +206,21 @@ namespace WpfApp2
 				HighestStatsControl.Visibility = Visibility.Visible;
 			}
 			if (e.Label == "BackToMainMenuFromClassSummary")
+			{
+				EverythingHidden();
+				TitlePageControl.Visibility = Visibility.Visible;
+			}
+			if (e.Label == "BackToMainMenuFromGameSummary")
+			{
+				EverythingHidden();
+				TitlePageControl.Visibility = Visibility.Visible;
+			}
+			if (e.Label == "BackToMainMenuFromPlayerSummary")
+			{
+				EverythingHidden();
+				TitlePageControl.Visibility = Visibility.Visible;
+			}
+			if (e.Label == "BackToMainMenuFromStatsSummary")
 			{
 				EverythingHidden();
 				TitlePageControl.Visibility = Visibility.Visible;

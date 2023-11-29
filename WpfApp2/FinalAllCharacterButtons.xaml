@@ -47,8 +47,8 @@
 
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Character Info</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center">Character Name:</TextBlock>
-            <TextBox x:Name="CharacterName" Width="130" Height="30"></TextBox>
+            <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Character Name:</TextBlock>
+            <TextBox x:Name="CharacterName" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
@@ -59,6 +59,11 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
             <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Game ID:</TextBlock>
             <TextBox x:Name="GameID" Width="130" Height="30" FontFamily="MV Boli"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" FontFamily="MV Boli">Character Description:</TextBlock>
+            <TextBox x:Name="CharacterDescriptionBox" Width="400" HorizontalAlignment="Stretch" Height="Auto" FontFamily="MV Boli" TextWrapping="Wrap"></TextBox>
         </StackPanel>
 
         <Button Grid.Row="3" Grid.Column="0" Width="150" Height="30" x:Name="EditCharacterStatsButton" Click="GoToCharacterStats" FontFamily="MV Boli">Edit Character Stats</Button>

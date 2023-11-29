@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WpfApp2"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Template">
@@ -24,7 +25,29 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-            
+    <Grid Background="Beige">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">Game Summary</TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="50">
+                <TextBlock FontSize="20" VerticalAlignment="Center" FontFamily="MV Boli">Game:</TextBlock>
+                <ComboBox Name="ComboForGameSummary" Width="150" Margin="5" VerticalAlignment="Center" FontFamily="MV Boli"></ComboBox>
+            </StackPanel>
+
+
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontFamily="MV Boli">Summary:</TextBlock>
+            <ListBox Name="GameSummaryOutput" MaxWidth="800" MinHeight="100" MinWidth="500" FontFamily="MV Boli"></ListBox>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="backFromGameSummary" Click="ClickBackInGameSummary" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+            </StackPanel>
+
+
+        </StackPanel>
+
+
+
+
     </Grid>
 </UserControl>

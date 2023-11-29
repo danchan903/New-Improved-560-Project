@@ -24,5 +24,30 @@ namespace WpfApp2
 		{
 			InitializeComponent();
 		}
+
+
+		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromGameSummary;
+
+		public void ClickBackInGameSummary(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+
+		}
+
+		public void ButtonClick(object sender, RoutedEventArgs e)
+		{
+
+			if (sender is Button b)
+			{
+				if (b.Name == "backFromGameSummary")
+				{
+					backToMainMenuFromGameSummary?.Invoke(this, new CustomButtonEventArgs("BackToMainMenuFromGameSummary"));
+				}
+
+
+			}
+		}
+
+
 	}
 }
