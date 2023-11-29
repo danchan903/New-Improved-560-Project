@@ -101,8 +101,13 @@ namespace WpfApp2
 		public void ConfirmCharacterInfo(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
+			UpdateAndInsert();
 
-			string query = @"IF EXISTS(SELECT * FROM Character WHERE CharacterName = @Name)
+		}
+
+		public void UpdateAndInsert()
+		{
+            string query = @"IF EXISTS(SELECT * FROM Character WHERE CharacterName = @Name)
 				UPDATE Character SET CharacterDescription = @Description, RaceID = @Race, ClassID = @Class,
 				PlayerID = @Player, GameID = @Game WHERE CharacterName = @Name
 				ELSE INSERT INTO Character(CharacterName, CharacterDescription, RaceID, ClassID, 
@@ -125,33 +130,59 @@ namespace WpfApp2
                 connection.Close();
             }
 
-/*            string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
+            /*            string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
 
-			using (connection = new SqlConnection(connectionString))
-			using (SqlCommand command = new SqlCommand(query, connection))
-			{
-
-
-				connection.Open();
-				command.Parameters.AddWithValue("@CharacterName", CharacterName.Text);
-				command.Parameters.AddWithValue("@CharacterDescription", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
-				command.Parameters.AddWithValue("@RaceID", GetRaceID());
-				command.Parameters.AddWithValue("@ClassID", GetClassID());
-				command.Parameters.AddWithValue("@PlayerID", Convert.ToInt32(PlayerID.Text));
-				command.Parameters.AddWithValue("@GameID", Convert.ToInt32(GameID.Text));
-				CharacterName.Clear();
-				PlayerID.Clear();
-				GameID.Clear();
+						using (connection = new SqlConnection(connectionString))
+						using (SqlCommand command = new SqlCommand(query, connection))
+						{
 
 
-				command.ExecuteScalar();
-			}
-*/
+							connection.Open();
+							command.Parameters.AddWithValue("@CharacterName", CharacterName.Text);
+							command.Parameters.AddWithValue("@CharacterDescription", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
+							command.Parameters.AddWithValue("@RaceID", GetRaceID());
+							command.Parameters.AddWithValue("@ClassID", GetClassID());
+							command.Parameters.AddWithValue("@PlayerID", Convert.ToInt32(PlayerID.Text));
+							command.Parameters.AddWithValue("@GameID", Convert.ToInt32(GameID.Text));
+							CharacterName.Clear();
+							PlayerID.Clear();
+							GameID.Clear();
 
 
-		}
+							command.ExecuteScalar();
+						}
+			*/
+        }
 
-		public int GetRaceID()
+		public void DeleteCharacter()
+		{
+            //Test for deleting as well as incorporating try catch exceptions
+            //We must handle all exceptions for credit
+            string deleteQuery = "DELETE FROM Character Where CharacterName = @Name";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+            {
+                try
+                {
+                    con.Open();
+                    command.Parameters.AddWithValue("@Name", CharacterName);
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Deleting Character: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public int GetRaceID()
 		{
 			if (currentRace.Contains("Dragonborn")) return 1;
 			else if (currentRace.Contains("Dwarf")) return 2;
