@@ -30,9 +30,12 @@ namespace WpfApp2
 		string connectionString;
 
 		public static string className { get; set; }
+
 		public static string currentRace { get; set; }
 
 		public static List<string> allItemsOwned { get; set; }
+
+		public static string charName { get; set; }
 
 		public FinalAllCharacterButtons()
 		{
@@ -172,11 +175,12 @@ namespace WpfApp2
 			*/
         }
 
+		//Deletes character but retains playerID and gameID
 		public void DeleteCharacter()
 		{
             //Test for deleting as well as incorporating try catch exceptions
             //We must handle all exceptions for credit
-            string deleteQuery = "DELETE FROM Character Where CharacterName = @Name)";
+            string deleteQuery = "DELETE FROM Character Where CharacterName = @Name";
             using (SqlConnection con = new SqlConnection(connectionString))
 			using (SqlCommand command = new SqlCommand(deleteQuery, con))
 			{

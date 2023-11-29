@@ -35,11 +35,18 @@ namespace WpfApp2
 		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromPlayerCreator;
 		public event EventHandler<CustomButtonEventArgs> confirmToMainMenuFromPlayerCreator;
 
-		public void ClickBackInPlayerSetup(object sender, RoutedEventArgs e)
+        public void ClickBackInPlayerSetup(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
 
 		}
+
+        public void DeletePlayerSetup(object sender, RoutedEventArgs e)
+        {
+            ButtonClick(sender, e);
+            DeleteCharacter();
+            DeletePlayer();
+        }
 
 		public void ClickConfirmInPlayerSetup(object sender, RoutedEventArgs e)
 		{
@@ -75,11 +82,13 @@ namespace WpfApp2
 
         //What will happen if we delete a player? Will this cause issues with already
         //existing characters that are assigned a playerID?
-        /*public void DeletePlayer()
+
+        //Deletes player (after character associated is removed)
+        public void DeletePlayer()
         {
             //Test for deleting as well as incorporating try catch exceptions
             //We must handle all exceptions for credit
-            string deleteQuery = "DELETE FROM Player Where PlayerID = @ID)";
+            string deleteQuery = "DELETE FROM Player Where PlayerID = @ID";
             using (SqlConnection con = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(deleteQuery, con))
             {
@@ -101,14 +110,43 @@ namespace WpfApp2
                     con.Close();
                 }
             }
-        }*/
+        }
+
+        //Deletes character but retains playerID and gameID
+        public void DeleteCharacter()
+        {
+            //Test for deleting as well as incorporating try catch exceptions
+            //We must handle all exceptions for credit
+            string deleteQuery = "DELETE FROM Character Where PlayerID = @id";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(deleteQuery, con))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@id", pID.Text);
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Deleting Player: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
 
         public void ButtonClick(object sender, RoutedEventArgs e)
 		{
 
 			if (sender is Button b)
 			{
-				if (b.Name == "backFromPlayerSetup")
+				if (b.Name == "backFromPlayerSetup" || b.Name == "deletePlayerButton")
 				{
 					backToMainMenuFromPlayerCreator?.Invoke(this, new CustomButtonEventArgs("BackToMainMenuFromPlayerCreator"));
 				}
@@ -117,7 +155,6 @@ namespace WpfApp2
 				{
 					confirmToMainMenuFromPlayerCreator?.Invoke(this, new CustomButtonEventArgs("ConfirmToMainmenuFromPlayerCreator"));
 				}
-
 			}
 		}
 	}

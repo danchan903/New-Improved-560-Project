@@ -48,6 +48,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="backFromPlayerSetup" Click="ClickBackInPlayerSetup" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
                 <Button x:Name="confirmFromPlayerSetup" Click="ClickConfirmInPlayerSetup" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Confirm</Button>
+                <Button x:Name="deletePlayerButton" Click="DeletePlayerSetup" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Delete</Button>
             </StackPanel>
 
         </StackPanel>
