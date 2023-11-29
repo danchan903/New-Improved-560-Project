@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +23,14 @@ namespace WpfApp2
 	/// </summary>
 	public partial class FinalHighestStats : UserControl
 	{
-		public FinalHighestStats()
+        SqlConnection connection;
+        string connectionString;
+
+        public FinalHighestStats()
 		{
 			InitializeComponent();
-		}
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+        }
 
 
 		public event EventHandler<CustomButtonEventArgs> backToMainMenuFromStatsSummary;
@@ -47,5 +54,19 @@ namespace WpfApp2
 
 			}
 		}
-	}
+
+        private void PopulateGameSummaryTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM ListCharacterStats ORDER BY ", connection))
+            {
+                DataTable playerTable = new DataTable();
+                adapter.Fill(playerTable);
+
+                GameSummaryOutput.DisplayMemberPath = "PlayerName";
+                GameSummaryOutput.SelectedValuePath = "PlayerName";
+                GameSummaryOutput.ItemsSource = playerTable.DefaultView;
+            }
+        }
+    }
 }
