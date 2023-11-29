@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -51,16 +52,58 @@ namespace WpfApp2
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@PlayerID", (pID.Text));
-                command.Parameters.AddWithValue("@PlayerName", PlayerNameBox.Text);
-                command.Parameters.AddWithValue("@Store", Gameid.Text);
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+				try
+				{
+                    command.Parameters.AddWithValue("@PlayerID", (pID.Text));
+                    command.Parameters.AddWithValue("@PlayerName", PlayerNameBox.Text);
+                    command.Parameters.AddWithValue("@Store", Gameid.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+				catch (System.Data.SqlClient.SqlException er)
+				{
+                    string error = "Error When Updating/Creating Character: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+				finally
+				{
+                    connection.Close();
+                }
             }
         }
 
-		public void ButtonClick(object sender, RoutedEventArgs e)
+        //What will happen if we delete a player? Will this cause issues with already
+        //existing characters that are assigned a playerID?
+        /*public void DeletePlayer()
+        {
+            //Test for deleting as well as incorporating try catch exceptions
+            //We must handle all exceptions for credit
+            string deleteQuery = "DELETE FROM Player Where PlayerID = @ID)";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(deleteQuery, con))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", pID.Text);
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Deleting Player: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }*/
+
+        public void ButtonClick(object sender, RoutedEventArgs e)
 		{
 
 			if (sender is Button b)

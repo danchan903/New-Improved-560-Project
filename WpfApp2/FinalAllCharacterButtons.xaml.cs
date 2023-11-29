@@ -105,6 +105,12 @@ namespace WpfApp2
 
 		}
 
+		public void DeleteCharacterInfo(object sender, RoutedEventArgs e)
+		{
+			ButtonClick(sender, e);
+			DeleteCharacter();
+		}
+
 		public void UpdateAndInsert()
 		{
             string query = @"IF EXISTS(SELECT * FROM Character WHERE CharacterName = @Name)
@@ -116,18 +122,30 @@ namespace WpfApp2
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@Name", CharacterName.Text);
-                command.Parameters.AddWithValue("@Description", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
-                command.Parameters.AddWithValue("@Race", GetRaceID());
-                command.Parameters.AddWithValue("@Class", GetClassID());
-                command.Parameters.AddWithValue("@Player", Convert.ToInt32(PlayerID.Text));
-                command.Parameters.AddWithValue("@Game", Convert.ToInt32(GameID.Text));
-                CharacterName.Clear();
-                PlayerID.Clear();
-                GameID.Clear();
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+				try
+				{
+                    command.Parameters.AddWithValue("@Name", CharacterName.Text);
+                    command.Parameters.AddWithValue("@Description", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
+                    command.Parameters.AddWithValue("@Race", GetRaceID());
+                    command.Parameters.AddWithValue("@Class", GetClassID());
+                    command.Parameters.AddWithValue("@Player", Convert.ToInt32(PlayerID.Text));
+                    command.Parameters.AddWithValue("@Game", Convert.ToInt32(GameID.Text));
+                    CharacterName.Clear();
+                    PlayerID.Clear();
+                    GameID.Clear();
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Updating/Inserting Character: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+				finally
+				{
+                    connection.Close();
+                }
             }
 
             /*            string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
@@ -158,28 +176,28 @@ namespace WpfApp2
 		{
             //Test for deleting as well as incorporating try catch exceptions
             //We must handle all exceptions for credit
-            string deleteQuery = "DELETE FROM Character Where CharacterName = @Name";
+            string deleteQuery = "DELETE FROM Character Where CharacterName = @Name)";
             using (SqlConnection con = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(deleteQuery, connection))
-            {
-                try
-                {
-                    con.Open();
-                    command.Parameters.AddWithValue("@Name", CharacterName);
-                    command.CommandType = CommandType.Text;
-                    command.ExecuteNonQuery();
-                }
-                catch (System.Data.SqlClient.SqlException er)
-                {
-                    string error = "Error When Deleting Character: ";
-                    error += er.Message;
-                    throw new Exception(error);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
+			using (SqlCommand command = new SqlCommand(deleteQuery, con))
+			{
+				try
+				{
+					command.Parameters.AddWithValue("@Name", CharacterName.Text);
+					command.CommandType = CommandType.Text;
+					con.Open();
+					command.ExecuteNonQuery();
+				}
+				catch (System.Data.SqlClient.SqlException er)
+				{
+					string error = "Error When Deleting Character: ";
+					error += er.Message;
+					throw new Exception(error);
+				}
+				finally
+				{
+					con.Close();
+				}
+			}
         }
 
         public int GetRaceID()
@@ -270,6 +288,10 @@ namespace WpfApp2
 				if (b.Name == "EditCharacterStatsButton")
 				{
 					toEditStats?.Invoke(this, new CustomButtonEventArgs("ToEditCharacterStats"));
+				}
+				if (b.Name == "DeleteCharacterButton")
+				{
+					backToMainMenuFromCharacterCreation?.Invoke(this, new CustomButtonEventArgs("BackToMainFromCharacterCreation"));
 				}
 
 			}

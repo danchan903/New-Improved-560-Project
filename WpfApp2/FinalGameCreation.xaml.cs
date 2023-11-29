@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfApp2
 {
@@ -55,12 +56,24 @@ namespace WpfApp2
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			using (SqlCommand command = new SqlCommand(query, connection))
 			{
-                command.Parameters.AddWithValue("@GameID", Int32.Parse(ID.Text));
-                command.Parameters.AddWithValue("@Description", Description.Text);
-                command.Parameters.AddWithValue("@Date", Date.Text);
-				connection.Open();
-				command.ExecuteNonQuery();
-				connection.Close();
+				try
+				{
+                    command.Parameters.AddWithValue("@GameID", Int32.Parse(ID.Text));
+                    command.Parameters.AddWithValue("@Description", Description.Text);
+                    command.Parameters.AddWithValue("@Date", Date.Text);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Updating/Creating Game: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+                finally 
+				{
+                    connection.Close();
+                }
             }
 
             /*if (flag == false)
@@ -104,7 +117,37 @@ namespace WpfApp2
             }*/
         }
 
-		public void ButtonClick(object sender, RoutedEventArgs e)
+        //What will happen if we delete a game? Will these cause issues with already
+        //existing games?
+/*        public void DeleteGame()
+        {
+            //Test for deleting as well as incorporating try catch exceptions
+            //We must handle all exceptions for credit
+            string deleteQuery = "DELETE FROM Game Where GameID = @ID)";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(deleteQuery, con))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@ID", Int32.Parse(ID.Text));
+                    command.CommandType = CommandType.Text;
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException er)
+                {
+                    string error = "Error When Deleting Game: ";
+                    error += er.Message;
+                    throw new Exception(error);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }*/
+
+        public void ButtonClick(object sender, RoutedEventArgs e)
 		{
 
 			if (sender is Button b)

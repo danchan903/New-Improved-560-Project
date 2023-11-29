@@ -78,6 +78,6 @@
 
         <Button Grid.Row="7" Grid.Column="0" x:Name="BackButtonInCharacterCreation" Click="BackToMainMenuFromCharacterCreation" Width="150" Height="30" FontFamily="MV Boli">Back</Button>
 
-
+        <Button Grid.Row="7" Grid.Column="2" x:Name="DeleteCharacterButton" Click="DeleteCharacterInfo" Width="150" Height="30" FontFamily="MV Boli">Delete</Button>
     </Grid>
 </UserControl>
