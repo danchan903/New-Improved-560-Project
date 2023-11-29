@@ -43,17 +43,65 @@ namespace WpfApp2
 		public void ClickConfirmInGameCreator(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
-            string query = "INSERT INTO Game VALUES (@GameID, @Description, @Date)";
 
-            using (connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-                command.Parameters.AddWithValue("@GameID",Int32.Parse(ID.Text));
+/*			int id;
+			string query;
+			bool flag = false;*/
+
+			string query = @"IF EXISTS(SELECT * FROM Game WHERE GameID = @GameID)
+				UPDATE Game SET GameDescription = @Description, GameStartDate = @Date WHERE GameID = @GameID
+				ELSE INSERT INTO Game(GameID, GameDescription, GameStartDate) VALUES(@GameID, @Description, @Date)";
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			using (SqlCommand command = new SqlCommand(query, connection))
+			{
+                command.Parameters.AddWithValue("@GameID", Int32.Parse(ID.Text));
                 command.Parameters.AddWithValue("@Description", Description.Text);
                 command.Parameters.AddWithValue("@Date", Date.Text);
-                command.ExecuteScalar();
+				connection.Open();
+				command.ExecuteNonQuery();
+				connection.Close();
             }
+
+            /*if (flag == false)
+			{
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand("SELECT @GameID"))
+                {
+                    SqlDataReader search = command.ExecuteReader();
+                    while (search.Read())
+                    {
+                        id = search.GetInt32(0);
+						if (id == Int32.Parse(ID.Text))
+						{
+							query = "UPDATE Game SET GameID = @GameID WHERE @GameID";
+							connection.Open();
+							command.Parameters.AddWithValue("@GameID", Int32.Parse(ID.Text));
+                            command.Parameters.AddWithValue("@Description", Description.Text);
+                            command.Parameters.AddWithValue("@Date", Date.Text);
+							command.ExecuteScalar();
+                        }
+						else
+						{
+							flag = true;
+						}
+                    }
+                }
+            }
+
+			else
+			{
+                query = "INSERT INTO Game VALUES (@GameID, @Description, @Date)";
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@GameID", Int32.Parse(ID.Text));
+                    command.Parameters.AddWithValue("@Description", Description.Text);
+                    command.Parameters.AddWithValue("@Date", Date.Text);
+                    command.ExecuteScalar();
+                }
+            }*/
         }
 
 		public void ButtonClick(object sender, RoutedEventArgs e)

@@ -43,16 +43,20 @@ namespace WpfApp2
 		public void ClickConfirmInPlayerSetup(object sender, RoutedEventArgs e)
 		{
 			ButtonClick(sender, e);
-            string query = "INSERT INTO Player VALUES (@PlayerID, @PlayerName, @GameStoreID)";
 
-            using (connection = new SqlConnection(connectionString))
+            string query = @"IF EXISTS(SELECT * FROM Player WHERE PlayerID = @PlayerID)
+				UPDATE Player SET PlayerName = @PlayerName, GameStoreID = @Store WHERE PlayerID = @PlayerID
+				ELSE INSERT INTO Player(PlayerID, PlayerName, GameStoreID) VALUES(@PlayerID, @PlayerName, @Store)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                connection.Open();
-                command.Parameters.AddWithValue("@PlayerID", pID.Text);
+                command.Parameters.AddWithValue("@PlayerID", (pID.Text));
                 command.Parameters.AddWithValue("@PlayerName", PlayerNameBox.Text);
-                command.Parameters.AddWithValue("@GameStoreID", Gameid.Text);
-                command.ExecuteScalar();
+                command.Parameters.AddWithValue("@Store", Gameid.Text);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
             }
         }
 

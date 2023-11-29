@@ -102,23 +102,30 @@ namespace WpfApp2
 		{
 			ButtonClick(sender, e);
 
-			/*            string query = "SELECT a.Name FROM FROM Ingredient a " +
-							"INNER JOIN RecipeIngredient b ON a.ID = b.IngredientId " +
-							"WHERE b.RecipeID = @RecipeId";
+			string query = @"IF EXISTS(SELECT * FROM Character WHERE CharacterName = @Name)
+				UPDATE Character SET CharacterDescription = @Description, RaceID = @Race, ClassID = @Class,
+				PlayerID = @Player, GameID = @Game WHERE CharacterName = @Name
+				ELSE INSERT INTO Character(CharacterName, CharacterDescription, RaceID, ClassID, 
+				PlayerID, GameID) VALUES(@Name, @Description, @Race, @Class, @Player, @Game)";
 
-						using (connection = new SqlConnection(connectionString))
-						using (SqlCommand command = new SqlCommand(query, connection))
-						using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-						{
-							command.Parameters.AddWithValue("@RecipeId", listviewName.SelectedValue);
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Name", CharacterName.Text);
+                command.Parameters.AddWithValue("@Description", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
+                command.Parameters.AddWithValue("@Race", GetRaceID());
+                command.Parameters.AddWithValue("@Class", GetClassID());
+                command.Parameters.AddWithValue("@Player", Convert.ToInt32(PlayerID.Text));
+                command.Parameters.AddWithValue("@Game", Convert.ToInt32(GameID.Text));
+                CharacterName.Clear();
+                PlayerID.Clear();
+                GameID.Clear();
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
 
-							DataTable characterTable = new DataTable();
-							adapter.Fill(characterTable);
-
-							listviewName.DisplayMember = "Name";
-							listviewName.ValueMember = "id";
-							listviewName.DataSource = characterTable;*/
-			string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
+/*            string query = "INSERT INTO Character VALUES (@CharacterName, @CharacterDescription, @RaceID, @ClassID, @PlayerID, @GameID)";
 
 			using (connection = new SqlConnection(connectionString))
 			using (SqlCommand command = new SqlCommand(query, connection))
@@ -139,7 +146,7 @@ namespace WpfApp2
 
 				command.ExecuteScalar();
 			}
-
+*/
 
 
 		}
