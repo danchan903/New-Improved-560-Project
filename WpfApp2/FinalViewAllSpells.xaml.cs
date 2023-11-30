@@ -44,36 +44,39 @@ namespace WpfApp2
 
         public void ButtonClick(object sender, RoutedEventArgs e)
         {
-
             if (sender is Button b)
             {
                 if (b.Name == "backFromAllSpells")
                 {
                     backToMainMenuFromAllSpells?.Invoke(this, new CustomButtonEventArgs("BackToMainMenuFromAllSpells"));
                 }
-
-
             }
         }
 
-        private void PopulateSpellsTable()
+        public void PopulateSpellsTable()
         {
-            string query = @"SELECT * FROM Spells ";
+            //string query = @"SELECT * FROM Spells Where ClassID = @id";
+            string query = @"SELECT * FROM Spells";
             using (connection = new SqlConnection(connectionString))
+            //using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
             //using (SqlCommand command = new SqlCommand("@ClassID", connection))
             {
                 //connection.Open();
                 //command.Parameters.AddWithValue("@ClassID", FinalAllCharacterButtons.ClassID);
 
-                DataTable t = new DataTable();
-                adapter.Fill(t);
+                 DataTable t = new DataTable();
+                 adapter.Fill(t);
+         
+                 AllSpellsOutput.DisplayMemberPath = "Name";
+                 AllSpellsOutput.SelectedValuePath = "Name";
 
-                AllSpellsOutput.DisplayMemberPath = "Name";
-                AllSpellsOutput.SelectedValuePath = "Name";
-
-                AllSpellsOutput.ItemsSource = t.DefaultView;
-                //command.ExecuteScalar();
+                 AllSpellsOutput.ItemsSource = t.DefaultView;
+                 //command.ExecuteScalar();
+/*                command.Parameters.AddWithValue("@id", FinalAllCharacterButtons.ClassID);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();*/
             }
         }
 

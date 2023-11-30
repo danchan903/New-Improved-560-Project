@@ -28,14 +28,11 @@
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli">All Spells</TextBlock>
 
-
-
-
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="AllSpellsOutput" MaxWidth="800" MinHeight="100" MinWidth="500" FontFamily="MV Boli" Margin="50"></ListBox>
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Name="AllSpellsOutput" MaxWidth="800" MinHeight="100" MinWidth="500" MaxHeight="700" FontFamily="MV Boli" Margin="50"></ListBox>
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="backFromAllSpells" Click="ClickBackInAllSpells" Width="150" Height="30" Margin="50" FontFamily="MV Boli">Back</Button>
+                <Button x:Name="backFromAllSpells" Click="ClickBackInAllSpells" MinWidth="150" MaxWidth="300" MaxHeight="60" MinHeight="30" Margin="50" FontFamily="MV Boli">Back</Button>
             </StackPanel>
 
 

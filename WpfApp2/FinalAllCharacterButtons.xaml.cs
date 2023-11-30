@@ -49,8 +49,6 @@ namespace WpfApp2
 
 		public static int Intelligence { get; set; }
 
-		public static string spell { get; set; }
-
 		public static int ClassID { get; set; }
 
 		public FinalAllCharacterButtons()
@@ -240,12 +238,7 @@ namespace WpfApp2
             }
         }
 
-/*		public void DeleteOrInsertItemsOwned()
-		{
-			string query = "
-		}*/
-
-        public int GetRaceID()
+            public int GetRaceID()
 		{
 			if (currentRace.Contains("Dragonborn")) return 1;
 			else if (currentRace.Contains("Dwarf")) return 2;
@@ -300,9 +293,8 @@ namespace WpfApp2
 
         public void ViewPossibleSpells(object sender, RoutedEventArgs e)
         {
+            ClassID = GetClassID();
             ButtonClick(sender, e);
-
-			ClassID = GetClassID();
         }
 
         public void BackToMainMenuFromCharacterCreation(object sender, RoutedEventArgs e)
