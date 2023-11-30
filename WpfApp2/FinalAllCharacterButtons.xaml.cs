@@ -147,7 +147,7 @@ namespace WpfApp2
 				try
 				{
                     command.Parameters.AddWithValue("@Name", CharacterName.Text);
-                    command.Parameters.AddWithValue("@Description", CharacterName.Text); ///////////////FIX THIS WHEN TEXT BOX IS THERE
+                    command.Parameters.AddWithValue("@Description", CharacterDescriptionBox.Text); 
                     command.Parameters.AddWithValue("@Race", GetRaceID());
                     command.Parameters.AddWithValue("@Class", GetClassID());
                     command.Parameters.AddWithValue("@Player", Convert.ToInt32(PlayerID.Text));
