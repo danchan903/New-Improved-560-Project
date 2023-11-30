@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace WpfApp2
 {
@@ -20,9 +23,15 @@ namespace WpfApp2
     /// </summary>
     public partial class FinalViewAllSpells : UserControl
     {
+
+        SqlConnection connection;
+        string connectionString;
+
         public FinalViewAllSpells()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            PopulateSpellsTable();
         }
 
         public event EventHandler<CustomButtonEventArgs> backToMainMenuFromAllSpells;
@@ -44,6 +53,27 @@ namespace WpfApp2
                 }
 
 
+            }
+        }
+
+        private void PopulateSpellsTable()
+        {
+            string query = @"SELECT * FROM Spells ";
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+            //using (SqlCommand command = new SqlCommand("@ClassID", connection))
+            {
+                //connection.Open();
+                //command.Parameters.AddWithValue("@ClassID", FinalAllCharacterButtons.ClassID);
+
+                DataTable t = new DataTable();
+                adapter.Fill(t);
+
+                AllSpellsOutput.DisplayMemberPath = "Name";
+                AllSpellsOutput.SelectedValuePath = "Name";
+
+                AllSpellsOutput.ItemsSource = t.DefaultView;
+                //command.ExecuteScalar();
             }
         }
 

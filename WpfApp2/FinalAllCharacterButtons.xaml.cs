@@ -51,6 +51,8 @@ namespace WpfApp2
 
 		public static string spell { get; set; }
 
+		public static int ClassID { get; set; }
+
 		public FinalAllCharacterButtons()
 		{
 			InitializeComponent();
@@ -282,6 +284,7 @@ namespace WpfApp2
 		public void GoToEditClass(object sender, RoutedEventArgs e)
 		{
             ButtonClick(sender, e);
+			
 		}
 
 		public void GoToRaceControl(object sender, RoutedEventArgs e)
@@ -299,6 +302,7 @@ namespace WpfApp2
         {
             ButtonClick(sender, e);
 
+			ClassID = GetClassID();
         }
 
         public void BackToMainMenuFromCharacterCreation(object sender, RoutedEventArgs e)

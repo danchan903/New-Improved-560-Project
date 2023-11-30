@@ -28,7 +28,6 @@ namespace WpfApp2
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["WpfApp2.Properties.Settings.Database1ConnectionString"].ConnectionString;
-            PopulateSpellsTable();
         }
 
         SqlConnection connection;
@@ -48,6 +47,7 @@ namespace WpfApp2
         public void ConfirmToCharacterCreationFromSpell(object sender, RoutedEventArgs e)
         {
             ButtonClick(sender, e);
+            
 
         }
 
@@ -64,28 +64,11 @@ namespace WpfApp2
                 if (b.Name == "ConfirmButtonFromSpell")
                 {
                     confirmToCharacterCreatorFromSpell?.Invoke(this, new CustomButtonEventArgs("ConfirmToCharacterCreationFromInventory"));
-                    FinalAllCharacterButtons.spell = SpellBox.Text;
+                    
                 }
 
             }
         }
 
-        private void PopulateSpellsTable()
-        {
-            /*            string query = @"IF EXISTS (SELECT * FROM Spells s INNER JOIN " +
-                            "Class c ON s.ClassID = c.ClassID WHERE ClassID = @id) ELSE SELECT * FROM Spells";*/
-            string query = "SELECT * FROM Spells";
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-            {
-                DataTable t = new DataTable();
-                adapter.Fill(t);
-
-                SpellBox.DisplayMemberPath = "Name";
-                SpellBox.SelectedValuePath = "Name";
-
-                SpellBox.ItemsSource = t.DefaultView;
-            }
-        }
     }
 }
